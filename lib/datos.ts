@@ -1,11 +1,11 @@
-import { CACHE, MIN_MAG } from "./config";
+import { MIN_MAG } from "./config";
 import { emparejar, emparejarWikipedia, MAX_DT_CATALOGO_S, MAX_DIST_KM } from "./emparejar";
 import { calcularEntorno, normalizarEntorno } from "./entorno";
 import { catalogoEMSC, catalogoGEOFON, urlEMSC, urlEventoEMSC, urlEventoGEOFON, urlGEOFON } from "./fuentes/catalogos";
 import { eventosGDACS, NIVEL_GDACS_ES, poblacionGDACS, urlGDACS } from "./fuentes/gdacs";
 import { catalogoUSGS, estimacionPAGER, urlCatalogoUSGS, usgsDelDia } from "./fuentes/usgs";
 import { filasWikipedia, urlPaginaWikipedia } from "./fuentes/wikipedia";
-import { nombrePais, traducirLugar } from "./lugar";
+import { traducirLugar } from "./lugar";
 import { IndicePlacas, type Tramo } from "./placas";
 import { porQueAquiAuto } from "./porque";
 import { detectarSecuencias } from "./secuencias";
@@ -94,6 +94,9 @@ function base(e: EventoUSGS, menor: boolean): Omit<Sismo, "victimas" | "estimaci
 const fechaES = (t: number) =>
   new Intl.DateTimeFormat("es", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(t);
 
+/** Texto de búsqueda de noticias para sismos sin texto verificado: «sismo 6.5 Japón 25 de octubre de 2026». */
+export const busquedaAuto = (mag: number, pais: string, t: number) => `sismo ${mag.toFixed(1)} ${pais} ${fechaES(t)}`;
+
 export async function obtenerDatos(anio: number, minMag = MIN_MAG): Promise<Datos> {
   const consulta = new Date().toISOString();
   const [rUSGS, rGEOFON, rEMSC, rGDACS, rWiki] = await Promise.allSettled([
@@ -116,7 +119,7 @@ export async function obtenerDatos(anio: number, minMag = MIN_MAG): Promise<Dato
   const menores = await menoresConVictimas(wiki, minMag);
   const eventosMenores: EventoUSGS[] = [];
   const aproximados: { fila: FilaWikipedia | null; v: Verificado; id: string }[] = [];
-  for (const { fila, usgs: e } of menores) {
+  for (const { usgs: e } of menores) {
     if (e && !idsCatalogo.has(e.id)) {
       eventosMenores.push(e);
       idsCatalogo.add(e.id);
@@ -180,7 +183,7 @@ export async function obtenerDatos(anio: number, minMag = MIN_MAG): Promise<Dato
       tsunamiTexto: v?.tsunami ?? null,
       limite,
       entorno,
-      busquedaNoticias: v?.busqueda_noticias ?? `sismo ${pais || lugar} ${fechaES(b.tiempo)}`,
+      busquedaNoticias: v?.busqueda_noticias ?? busquedaAuto(b.mag, pais || lugar, b.tiempo),
     };
   };
 

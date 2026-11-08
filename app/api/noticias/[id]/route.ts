@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { CACHE } from "@/lib/config";
+import { busquedaAuto } from "@/lib/datos";
 import { pedirJSON } from "@/lib/fetcher";
 import { BASE_USGS } from "@/lib/fuentes/usgs";
 import { notasGDELT, notasGoogle, videosYouTube, type Nota } from "@/lib/fuentes/noticias";
@@ -23,8 +24,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
   }
 
   const { pais, lugar } = traducirLugar(ev.place);
-  const mes = new Intl.DateTimeFormat("es", { month: "long", year: "numeric", timeZone: "UTC" }).format(ev.time);
-  const busqueda = VER[id]?.busqueda_noticias ?? `sismo ${pais || lugar} ${mes}`;
+  const busqueda = VER[id]?.busqueda_noticias ?? busquedaAuto(ev.mag, pais || lugar, ev.time);
   const ingles = paisIngles(ev.place);
   const consultaGDELT = `(earthquake OR sismo OR terremoto OR quake) "${ingles}"`;
   const hasta = Math.min(Date.now(), ev.time + 21 * 86400000);

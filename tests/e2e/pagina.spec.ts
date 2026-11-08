@@ -6,7 +6,7 @@ test.describe("Sismos del año", () => {
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Sismos del año");
     await expect(page.locator(".conclusion")).not.toBeEmpty();
     await expect(page.locator(".mapa-caja circle.sismo").first()).toBeVisible();
-    await page.waitForFunction(() => document.querySelectorAll("path.tierra").length > 100);
+    await page.waitForFunction(() => document.querySelector("path.tierra") !== null);
     const ancho = await page.evaluate(() => [document.documentElement.scrollWidth, window.innerWidth]);
     expect(ancho[0]).toBeLessThanOrEqual(ancho[1]);
     await page.screenshot({ path: `tests/e2e/capturas/${info.project.name}.png`, fullPage: true });
@@ -16,7 +16,7 @@ test.describe("Sismos del año", () => {
   test("sin desplazamiento horizontal a 360 px", async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto("/");
-    await page.waitForFunction(() => document.querySelectorAll("path.tierra").length > 100);
+    await page.waitForFunction(() => document.querySelector("path.tierra") !== null);
     const [sw, iw] = await page.evaluate(() => [document.documentElement.scrollWidth, window.innerWidth]);
     expect(sw).toBeLessThanOrEqual(iw);
   });
@@ -49,6 +49,12 @@ test.describe("Sismos del año", () => {
     await page.goto("/?sismo=us6000t7zp");
     await expect(page.locator("#detalle h2")).toContainText("La Guaira");
     await expect(page.locator("#detalle")).toContainText("Muertos");
+  });
+
+  test("?año= carga un año anterior", async ({ page }) => {
+    await page.goto("/?año=2025");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("2025", { timeout: 30_000 });
+    await expect(page.locator("tbody tr").first()).toContainText("2025");
   });
 
   test("teclado: una fila se elige con Enter", async ({ page }) => {

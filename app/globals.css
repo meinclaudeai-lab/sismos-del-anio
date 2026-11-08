@@ -314,6 +314,12 @@ p {
   gap: 20px;
   align-items: start;
 }
+@media (min-width: 961px) {
+  .explorador > :first-child {
+    position: sticky;
+    top: 12px;
+  }
+}
 @media (max-width: 960px) {
   .explorador {
     grid-template-columns: minmax(0, 1fr);
@@ -336,8 +342,10 @@ p {
 }
 .mapa-caja .tierra {
   fill: var(--land);
+}
+.mapa-caja .fronteras {
+  fill: none;
   stroke: var(--bg);
-  stroke-width: 0.5;
 }
 .mapa-caja .esfera {
   fill: none;

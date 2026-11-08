@@ -4,7 +4,7 @@ import { CACHE } from "../config";
 import { pedirJSON } from "../fetcher";
 import type { FilaWikipedia } from "../tipos";
 
-export const urlPaginaWikipedia = (anio: number) => `https://en.wikipedia.org/wiki/List_of_earthquakes_in_${anio}`;
+export { urlPaginaWikipedia } from "../urls";
 export const urlApiWikipedia = (anio: number) =>
   `https://en.wikipedia.org/w/api.php?action=parse&page=List_of_earthquakes_in_${anio}&prop=text&format=json&formatversion=2`;
 
@@ -107,7 +107,8 @@ export function parsearWikipedia(html: string, anio: number): FilaWikipedia[] {
         }
       }
     }
-    for (const { ancla: _a, i: _i, ...f } of filasTabla) out.push(f);
+    for (const f of filasTabla)
+      out.push({ fecha: f.fecha, lugar: f.lugar, pais: f.pais, mag: f.mag, profundidadKm: f.profundidadKm, muertos: f.muertos, heridos: f.heridos, compartida: f.compartida });
   });
   return out;
 }

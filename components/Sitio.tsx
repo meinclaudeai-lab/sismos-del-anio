@@ -48,12 +48,12 @@ export default function Sitio({ inicial }: { inicial: Datos }) {
         })
         .catch(() => setErrorAnio(`No se pudieron cargar los datos de ${anio}; se muestra ${inicial.anio}.`));
     } else if (id && inicial.sismos.some((s) => s.id === id)) {
+      // La URL solo existe en el navegador: se lee tras hidratar.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSeleccion(id);
       requestAnimationFrame(() => document.getElementById("detalle")?.scrollIntoView({ block: "start" }));
     }
   }, [inicial]);
-
-  useEffect(() => setMes(ultimoMes), [ultimoMes]);
 
   // Reproducir el año mes a mes.
   useEffect(() => {
@@ -260,9 +260,9 @@ export default function Sitio({ inicial }: { inicial: Datos }) {
             <p>{patron.patron}</p>
             <p>{patron.tendencia}</p>
             <p className="chico apagado">
-              Referencia: el USGS cita unos {datos.referencias.find((r) => r.id === "prom_m7")?.valor ?? 16} sismos M7+ al año en promedio desde ~1900 (
+              Referencia: el USGS cita unos {datos.referencias.find((r) => r.id === "prom_m7")?.valor ?? 16} sismos M7+ al año en promedio desde ~1900 (fuente:{" "}
               <a href={datos.referencias.find((r) => r.id === "prom_m7")?.url} target="_blank" rel="noopener noreferrer">
-                USGS
+                USGS, «¿Está aumentando la actividad sísmica?»
               </a>
               ). El conteo de esta página usa el catálogo ComCat actual, que puede diferir algo de esa cifra histórica.
             </p>

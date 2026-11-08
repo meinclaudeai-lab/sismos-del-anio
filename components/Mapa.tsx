@@ -1,26 +1,14 @@
 "use client";
 
-import { geoGraticule10, geoNaturalEarth1, geoPath } from "d3-geo";
 import { select } from "d3-selection";
 import { zoom as d3zoom, zoomIdentity, type ZoomBehavior, type ZoomTransform } from "d3-zoom";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { feature } from "topojson-client";
-import type { FeatureCollection, MultiLineString } from "geojson";
-import type { Topology } from "topojson-specification";
+import { H, proyeccion, W } from "@/lib/proyeccion";
 import type { Sismo } from "@/lib/tipos";
 import { claseProfundidad, fechaCorta, n0, n1, radioMagnitud } from "./formato";
 
-const W = 960;
-const ESFERA = { type: "Sphere" } as const;
-// Margen de 3 unidades para que el borde de la esfera no quede cortado.
-const proyeccion = geoNaturalEarth1().rotate([-155, 0]).fitWidth(W - 6, ESFERA);
-proyeccion.translate([proyeccion.translate()[0] + 3, proyeccion.translate()[1] + 3]);
-const ruta = geoPath(proyeccion);
-const H = Math.ceil(ruta.bounds(ESFERA)[1][1] + 3);
-const RUTA_ESFERA = ruta(ESFERA) ?? "";
-const RUTA_GRATICULA = ruta(geoGraticule10()) ?? "";
-
-type Placas = FeatureCollection<MultiLineString, { cat: string }>;
+/** Trazos precalculados por scripts/mapa.ts con la misma proyección. */
+type Rutas = { esfera: string; graticula: string; tierra: string; fronteras: string; placas: { cat: string; d: string }[] };
 
 /** Radio mínimo de toque, en píxeles de pantalla (24 px de diámetro como mínimo). */
 const TOQUE_PX = 14;
@@ -39,24 +27,14 @@ export default function Mapa({
   const svgRef = useRef<SVGSVGElement>(null);
   const zoomRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
   const [t, setT] = useState<ZoomTransform>(zoomIdentity);
-  const [paises, setPaises] = useState<string[]>([]);
-  const [placas, setPlacas] = useState<{ cat: string; d: string }[]>([]);
+  const [rutas, setRutas] = useState<Rutas | null>(null);
   const [hover, setHover] = useState<{ s: Sismo; x: number; y: number } | null>(null);
 
   useEffect(() => {
     let vivo = true;
-    fetch("/paises-110m.json")
+    fetch("/mapa-rutas.json")
       .then((r) => r.json())
-      .then((topo: Topology) => {
-        const fc = feature(topo, topo.objects.countries) as unknown as FeatureCollection;
-        if (vivo) setPaises(fc.features.map((f) => ruta(f) ?? ""));
-      })
-      .catch(() => {});
-    fetch("/placas-mapa.json")
-      .then((r) => r.json())
-      .then((fc: Placas) => {
-        if (vivo) setPlacas(fc.features.map((f) => ({ cat: f.properties.cat, d: ruta(f) ?? "" })));
-      })
+      .then((r: Rutas) => vivo && setRutas(r))
       .catch(() => {});
     return () => {
       vivo = false;
@@ -152,17 +130,18 @@ export default function Mapa({
         }}
         onPointerLeave={() => setHover(null)}
       >
-        <path d={RUTA_ESFERA} className="esfera" />
+        {rutas && <path d={rutas.esfera} className="esfera" />}
         <g transform={`translate(${t.x},${t.y}) scale(${k})`}>
-          <path d={RUTA_GRATICULA} className="graticula" style={{ strokeWidth: 0.4 / k }} />
-          <g>
-            {paises.map((d, i) => (
-              <path key={i} d={d} className="tierra" style={{ strokeWidth: 0.5 / k }} />
-            ))}
-          </g>
-          {mostrarLimites && (
+          {rutas && (
+            <>
+              <path d={rutas.graticula} className="graticula" style={{ strokeWidth: 0.4 / k }} />
+              <path d={rutas.tierra} className="tierra" />
+              <path d={rutas.fronteras} className="fronteras" style={{ strokeWidth: 0.5 / k }} />
+            </>
+          )}
+          {mostrarLimites && rutas && (
             <g aria-hidden="true">
-              {placas.map((p) => (
+              {rutas.placas.map((p) => (
                 <path key={p.cat} d={p.d} className={`placa ${p.cat}`} />
               ))}
             </g>

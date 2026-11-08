@@ -1,7 +1,7 @@
 /**
  * Descarga PB2002_steps.json (Bird, 2003; repo fraxen/tectonicplates) y genera:
  *  - data/placas-pb2002.json: tramos [latA, lonA, latB, lonB, STEPCLASS, PLATEBOUND, VELOCITYLE]
- *  - public/placas-mapa.json: GeoJSON simplificado por tipo de límite, para dibujar el mapa.
+ *  - data/placas-mapa.json: GeoJSON por tipo de límite (entrada de npm run mapa).
  * Uso: npm run placas
  */
 import { writeFileSync } from "node:fs";
@@ -54,7 +54,7 @@ async function main() {
       geometry: { type: "MultiLineString", coordinates: coords },
     })),
   };
-  writeFileSync("public/placas-mapa.json", JSON.stringify(geo));
+  writeFileSync("data/placas-mapa.json", JSON.stringify(geo));
   console.log(`${tramos.length} tramos; polilíneas:`, Object.fromEntries(Object.entries(lineas).map(([k, v]) => [k, v.length])));
 }
 

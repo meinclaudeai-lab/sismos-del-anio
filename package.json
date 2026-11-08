@@ -11,7 +11,8 @@
     "test:e2e": "playwright test",
     "placas": "tsx scripts/placas.ts",
     "linea-base": "tsx scripts/linea-base.ts",
-    "respaldo": "tsx scripts/respaldo.ts"
+    "respaldo": "tsx scripts/respaldo.ts",
+    "mapa": "tsx scripts/mapa.ts"
   },
   "dependencies": {
     "cheerio": "^1.2.0",

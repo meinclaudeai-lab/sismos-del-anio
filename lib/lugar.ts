@@ -5,7 +5,7 @@ const RUMBOS: Record<string, string> = {
 
 /** Nombres en inglés que usa USGS → código ISO 3166-1 alfa-2. */
 const PAISES_ISO: Record<string, string> = {
-  Afghanistan: "AF", Algeria: "DZ", Argentina: "AR", Australia: "AU", Bangladesh: "BD", Bolivia: "BO",
+  Afghanistan: "AF", Burma: "MM", "Burma (Myanmar)": "MM", "Myanmar (Burma)": "MM", Algeria: "DZ", Argentina: "AR", Australia: "AU", Bangladesh: "BD", Bolivia: "BO",
   Brazil: "BR", Canada: "CA", Chile: "CL", China: "CN", Colombia: "CO", "Costa Rica": "CR", Cuba: "CU",
   "Dominican Republic": "DO", Ecuador: "EC", "El Salvador": "SV", Ethiopia: "ET", Fiji: "FJ",
   "French Polynesia": "PF", Greece: "GR", Guatemala: "GT", Haiti: "HT", Honduras: "HN", Iceland: "IS",
@@ -118,7 +118,10 @@ function traducirRegion(region: string): { texto: string; iso: string } {
  * Si no reconoce el formato, devuelve el texto original.
  */
 export function traducirLugar(place: string | null | undefined): LugarTraducido {
-  const p = (place ?? "").trim();
+  // Eventos con nombre propio en USGS: "2025 Mandalay, Burma (Myanmar) Earthquake" → "Mandalay, Burma (Myanmar)".
+  const p = (place ?? "")
+    .trim()
+    .replace(/^\d{4}\s+(.+?)\s+Earthquake$/i, "$1");
   if (!p) return { lugar: "Lugar sin especificar", pais: "", iso: "" };
 
   for (const [re, es] of FRASES) if (re.test(p)) return { lugar: es, pais: oceano(es), iso: "" };
@@ -146,6 +149,6 @@ export function traducirLugar(place: string | null | undefined): LugarTraducido 
 
 /** Para emparejar con Wikipedia: nombre en inglés del país a partir del texto de USGS. */
 export function paisIngles(place: string | null | undefined): string {
-  const partes = (place ?? "").split(",").map((s) => s.trim());
+  const partes = (place ?? "").replace(/^\d{4}\s+(.+?)\s+Earthquake$/i, "$1").split(",").map((s) => s.trim());
   return partes[partes.length - 1].replace(/ region$/, "");
 }

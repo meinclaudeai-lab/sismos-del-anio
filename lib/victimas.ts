@@ -1,5 +1,5 @@
 import type { Enlace, FilaWikipedia, Victimas } from "./tipos";
-import { urlPaginaWikipedia } from "./fuentes/wikipedia";
+import { urlPaginaWikipedia } from "./urls";
 
 export type RegistroVerificado = {
   muertos?: number | null;

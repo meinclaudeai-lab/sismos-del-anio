@@ -15,6 +15,9 @@ describe("traducirLugar", () => {
     expect(traducirLugar("Bonin Islands, Japan region")).toMatchObject({ lugar: "Islas Bonin, región de Japón", pais: "Japón" });
     expect(traducirLugar("100 km S of Adak, Alaska")).toMatchObject({ lugar: "A 100 km al S de Adak, Alaska", pais: "Estados Unidos" });
   });
+  it("eventos con nombre propio de USGS", () => {
+    expect(traducirLugar("2025 Mandalay, Burma (Myanmar) Earthquake")).toMatchObject({ lugar: "Mandalay, Myanmar (Birmania)", pais: "Myanmar (Birmania)" });
+  });
   it("frases sin país", () => {
     expect(traducirLugar("central Mid-Atlantic Ridge")).toMatchObject({ lugar: "Dorsal Mesoatlántica central", pais: "Océano Atlántico" });
   });

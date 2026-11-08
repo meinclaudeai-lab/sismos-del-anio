@@ -140,10 +140,10 @@ function Noticias({ s }: { s: Sismo }) {
 
 export default function Detalle({ s }: { s: Sismo | null }) {
   const [montado, setMontado] = useState(false);
-  const [copiado, setCopiado] = useState(false);
+  const [copiadoId, setCopiadoId] = useState<string | null>(null);
+  // La hora local depende del navegador del lector: se muestra solo después de hidratar.
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMontado(true), []);
-  useEffect(() => setCopiado(false), [s?.id]);
 
   if (!s) {
     return (
@@ -158,7 +158,7 @@ export default function Detalle({ s }: { s: Sismo | null }) {
     try {
       if (navigator.share) await navigator.share({ title: `Sismo M${n1(s.mag)} – ${s.lugar}`, url });
       else await navigator.clipboard.writeText(url);
-      setCopiado(true);
+      setCopiadoId(s.id);
     } catch {
       /* el lector canceló */
     }
@@ -275,7 +275,7 @@ export default function Detalle({ s }: { s: Sismo | null }) {
         )}
         <li>
           <button type="button" onClick={compartir}>
-            {copiado ? "Enlace copiado" : "Compartir este sismo"}
+            {copiadoId === s.id ? "Enlace copiado" : "Compartir este sismo"}
           </button>
         </li>
       </ul>
