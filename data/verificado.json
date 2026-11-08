@@ -1,6 +1,6 @@
 {
  "_instrucciones": "Correcciones manuales. Clave = id de USGS (o id provisional 'otro-*' si aún no se encuentra en USGS). Cualquier campo distinto de null sobrescribe lo automático. Cambia 'fecha_cifra' cuando actualices muertos/heridos. Ver README.",
- "verificado_al": "2026-10-10",
+ "verificado_al": "2026-11-07",
  "sismos": {
   "us7000rm3k": {
    "id_provisional": null,
@@ -28,12 +28,12 @@
    "busqueda_noticias": "sismo Guerrero 2 enero 2026",
    "fecha_cifra": "2026-10-10"
   },
-  "otro-gilgit": {
+  "us7000rqik": {
    "id_provisional": "otro-gilgit",
-   "fecha_utc": "2026-01-19",
-   "lat": 35.9,
-   "lon": 74.4,
-   "ubicacion_aprox": true,
+   "fecha_utc": "2026-01-19T06:21Z",
+   "lat": 36.7225,
+   "lon": 74.4411,
+   "ubicacion_aprox": false,
    "magnitud_usgs": 5.6,
    "magnitud_geofon": null,
    "profundidad_km": 23,
@@ -54,12 +54,12 @@
    "busqueda_noticias": "sismo Gilgit Pakistán enero 2026",
    "fecha_cifra": "2026-10-10"
   },
-  "otro-pacitan": {
+  "us6000s6ne": {
    "id_provisional": "otro-pacitan",
-   "fecha_utc": "2026-02-05",
-   "lat": -8.7,
-   "lon": 111.1,
-   "ubicacion_aprox": true,
+   "fecha_utc": "2026-02-05T18:06Z",
+   "lat": -8.8606,
+   "lon": 111.2205,
+   "ubicacion_aprox": false,
    "magnitud_usgs": 5.8,
    "magnitud_geofon": null,
    "profundidad_km": 40,
@@ -262,15 +262,15 @@
    "busqueda_noticias": "sismo Molucas Indonesia abril 2026",
    "fecha_cifra": "2026-10-10"
   },
-  "otro-jorm": {
+  "us6000smda": {
    "id_provisional": "otro-jorm",
-   "fecha_utc": "2026-04-03",
-   "lat": 36.6,
-   "lon": 70.9,
-   "ubicacion_aprox": true,
+   "fecha_utc": "2026-04-03T16:12Z",
+   "lat": 36.5419,
+   "lon": 70.8156,
+   "ubicacion_aprox": false,
    "magnitud_usgs": 5.8,
    "magnitud_geofon": null,
-   "profundidad_km": 186,
+   "profundidad_km": 188,
    "lugar": "Jurm, Badajshán",
    "pais": "Afganistán",
    "muertos": 12,
@@ -343,13 +343,13 @@
    "busqueda_noticias": "sismo Japón Iwate 15 mayo 2026",
    "fecha_cifra": "2026-10-10"
   },
-  "otro-liuzhou": {
+  "us6000sye4": {
    "id_provisional": "otro-liuzhou",
-   "fecha_utc": "2026-05-17",
-   "lat": 24.3,
-   "lon": 109.4,
-   "ubicacion_aprox": true,
-   "magnitud_usgs": 5.0,
+   "fecha_utc": "2026-05-17T16:21Z",
+   "lat": 24.4295,
+   "lon": 109.2354,
+   "ubicacion_aprox": false,
+   "magnitud_usgs": 5,
    "magnitud_geofon": null,
    "profundidad_km": 10,
    "lugar": "Liuzhou, Guangxi",
@@ -448,7 +448,7 @@
     "url": "https://www.philstar.com/news-commentary/2026/06/19/2536224/mindanao-quake-death-toll-rises-78"
    },
    "busqueda_noticias": "terremoto Mindanao junio 2026",
-   "fecha_cifra": "2026-10-10"
+   "fecha_cifra": "2026-11-07"
   },
   "us7000srcg": {
    "id_provisional": null,
@@ -502,11 +502,11 @@
    "busqueda_noticias": "sismo Sulawesi Palu junio 2026",
    "fecha_cifra": "2026-10-10"
   },
-  "otro-qinghai": {
+  "us7000stbz": {
    "id_provisional": "otro-qinghai",
    "fecha_utc": "2026-06-16T09:06Z",
-   "lat": 37.572,
-   "lon": 95.382,
+   "lat": 37.888,
+   "lon": 95.4919,
    "ubicacion_aprox": false,
    "magnitud_usgs": 6.3,
    "magnitud_geofon": null,
@@ -623,23 +623,23 @@
    "profundidad_km": 10,
    "lugar": "Frente a La Guaira",
    "pais": "Venezuela",
-   "muertos": 5069,
-   "heridos": 16740,
-   "nota_victimas": null,
+   "muertos": 6509,
+   "heridos": null,
+   "nota_victimas": "Cifra conjunta de los dos sismos del 24 de junio. El boletín del 24 de agosto no da heridos; el último dato oficial comparable fue de 16.740 heridos.",
    "resumen": "El más mortífero del año. Con el M7.2 previo dejó 5,069 muertos y 16,740 heridos (cifra oficial al 17 de julio); 190 edificios colapsados, sobre todo en La Guaira. Reportes posteriores hablan de unos 5,300.",
    "tsunami": "No",
    "por_que_aqui": "Asociado al sistema de fallas de San Sebastián, en el límite transformante Caribe–Sudamérica; ocurrió a solo ~10 km de profundidad y muy cerca de Caracas.",
    "entorno": "Falla transformante",
    "fuente_cifras": {
-    "nombre": "AP vía ABC7 (cifra oficial al 17 jul)",
-    "url": "https://abc7news.com/post/venezuela-earthquakes-death-toll-surpasses-5000-mostly-area-la-guaira/19533377/"
+    "nombre": "El Diario (boletín oficial del 24 ago)",
+    "url": "https://eldiario.com/2026/08/24/terremotos-en-venezuela-muertos-heridos/"
    },
    "fuente_extra": {
     "nombre": "OPS/OMS: Informe de situación n.º 1",
     "url": "https://www.paho.org/es/documentos/informe-situacion-no1-terremotos-venezuela-m72-m75"
    },
    "busqueda_noticias": "terremoto La Guaira Venezuela junio 2026",
-   "fecha_cifra": "2026-10-10"
+   "fecha_cifra": "2026-08-24"
   },
   "us6000t7zq": {
    "id_provisional": null,
@@ -775,7 +775,7 @@
     "url": "https://www.paho.org/sites/default/files/2026/08/sitrep3-terremoto-colombia-2026.pdf"
    },
    "busqueda_noticias": "terremoto Colombia 10 agosto 2026",
-   "fecha_cifra": "2026-10-10"
+   "fecha_cifra": "2026-11-07"
   },
   "us6000tkt2": {
    "id_provisional": null,
@@ -804,7 +804,7 @@
     "url": "https://www.thevibes.com/articles/world/126206/powerful-flores-7.7-magnitude-earthquake-kills-20-as-two-remain-buried"
    },
    "busqueda_noticias": "terremoto Flores Indonesia agosto 2026",
-   "fecha_cifra": "2026-10-10"
+   "fecha_cifra": "2026-11-07"
   },
   "us6000tkyk": {
    "id_provisional": null,
@@ -948,15 +948,15 @@
    "lugar": "Península de Azuero",
    "pais": "Panamá",
    "muertos": 0,
-   "heridos": 26,
+   "heridos": 27,
    "nota_victimas": null,
-   "resumen": "Ayer. Sin muertos en el último balance de Sinaproc: al menos 26 heridos leves, 188 escuelas dañadas y daños en Los Santos, Herrera, Veraguas, Coclé y Chiriquí. Más de 150 réplicas.",
+   "resumen": "Sin muertos en los balances de Sinaproc: 27 heridos leves, unas 300 personas evacuadas y daños en viviendas, 188 escuelas, centros de salud y carreteras de Los Santos, Herrera, Veraguas, Coclé y Chiriquí. Más de 150 réplicas.",
    "tsunami": "Protocolos activados en el Pacífico",
    "por_que_aqui": "Sistema de Fallas Azuero–Soná, en la interacción de la placa de Nazca con la Microplaca de Panamá (Instituto de Geociencias, UP).",
    "entorno": "Fallas en la corteza",
    "fuente_cifras": {
-    "nombre": "Infobae (Sinaproc, 2.º informe)",
-    "url": "https://www.infobae.com/panama/2026/10/10/terremoto-en-panama-deja-al-menos-26-lesionados-y-danos-en-188-escuelas-mientras-continuan-las-replicas/"
+    "nombre": "Primicias (balance de Sinaproc)",
+    "url": "https://www.primicias.ec/internacional/terremoto-panama-temblor-danos-victimas-134608/"
    },
    "fuente_extra": {
     "nombre": "El Tiempo: la falla detrás del sismo",
@@ -1107,5 +1107,6 @@
    "fuente": "Infobae (geólogos consultados)",
    "url": "https://www.infobae.com/america/ciencia-america/2026/08/11/actividad-sismica-en-sudamerica-por-que-ocurrieron-terremotos-con-solo-seis-semanas-de-diferencia-segun-los-geologos/"
   }
- ]
+ ],
+ "_reverificacion_2026_11_07": "Ids de USGS asignados a los 5 sismos menores. Venezuela actualizada a 6509 (24 ago). Panamá: 0 muertos, 27 heridos (no se halló balance posterior al 10 oct; Wikipedia indica 3 muertos sin fuente oficial encontrada). Mindanao 81, Colombia 331 y Flores 111 confirmadas como las cifras oficiales más recientes encontradas."
 }
