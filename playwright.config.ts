@@ -3,6 +3,8 @@ import { defineConfig, devices } from "@playwright/test";
 const PUERTO = Number(process.env.PUERTO ?? 3100);
 // Si no se puede descargar el navegador de Playwright, PW_CHROMIUM apunta a un Chromium local.
 const executablePath = process.env.PW_CHROMIUM || undefined;
+// PW_BASE_URL prueba un despliegue (p. ej. producción) en vez del servidor local.
+const BASE_URL = process.env.PW_BASE_URL;
 
 const combinaciones = [
   { name: "movil-claro", width: 390, scheme: "light" as const },
@@ -15,7 +17,7 @@ export default defineConfig({
   testDir: "tests/e2e",
   timeout: 60_000,
   reporter: "list",
-  use: { baseURL: `http://localhost:${PUERTO}`, launchOptions: { executablePath } },
+  use: { baseURL: BASE_URL ?? `http://localhost:${PUERTO}`, launchOptions: { executablePath } },
   projects: combinaciones.map((c) => ({
     name: c.name,
     use: {
@@ -26,10 +28,12 @@ export default defineConfig({
       timezoneId: "America/Mexico_City",
     },
   })),
-  webServer: {
-    command: `npx next start -p ${PUERTO}`,
-    port: PUERTO,
-    reuseExistingServer: true,
-    timeout: 120_000,
-  },
+  webServer: BASE_URL
+    ? undefined
+    : {
+        command: `npx next start -p ${PUERTO}`,
+        port: PUERTO,
+        reuseExistingServer: true,
+        timeout: 120_000,
+      },
 });

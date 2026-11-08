@@ -4,6 +4,8 @@ Mapa interactivo, en español, de los sismos fuertes del año en curso: dónde o
 qué dicen las noticias y si hay un patrón o una tendencia. Se actualiza solo a partir de fuentes públicas
 (USGS, GEOFON, EMSC, GDACS, Wikipedia, GDELT y Google Noticias) y no necesita ninguna clave de API.
 
+En línea: <https://sismos-del-anio.vercel.app>
+
 ## Correr en local
 
 Requiere Node.js 20 o superior.
@@ -18,6 +20,7 @@ Otros comandos:
 ```bash
 npm test           # pruebas de la lógica (Vitest)
 npm run build && npm run test:e2e   # pruebas en navegador (Playwright), capturas en tests/e2e/capturas/
+PW_BASE_URL=https://sismos-del-anio.vercel.app npm run test:e2e   # las mismas pruebas contra producción
 ```
 
 `?año=2025` muestra un año anterior (desde 1976) y `?sismo=<id de USGS>` abre un sismo concreto.

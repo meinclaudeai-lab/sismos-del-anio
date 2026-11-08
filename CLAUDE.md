@@ -60,6 +60,10 @@ npm run mapa           # precalcula public/mapa-rutas.json (después de placas o
 ```
 
 Si Playwright no puede descargar su navegador, exporta `PW_CHROMIUM` con la ruta de un Chromium local.
+`PW_BASE_URL=https://sismos-del-anio.vercel.app` corre las pruebas e2e contra producción (sin servidor local).
+
+Despliegue: repo `meinclaudeai-lab/sismos-del-anio` conectado a Vercel; cada push a `main` despliega.
+`CRON_SECRET` y `SITE_URL` son variables sensibles de Vercel (no se pueden descargar; para cambiarlas, `vercel env rm/add`).
 
 ## Cómo corregir datos
 
