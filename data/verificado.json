@@ -947,23 +947,23 @@
    "profundidad_km": 12.6,
    "lugar": "Península de Azuero",
    "pais": "Panamá",
-   "muertos": 0,
+   "muertos": 1,
    "heridos": 27,
    "nota_victimas": null,
-   "resumen": "Sin muertos en los balances de Sinaproc: 27 heridos leves, unas 300 personas evacuadas y daños en viviendas, 188 escuelas, centros de salud y carreteras de Los Santos, Herrera, Veraguas, Coclé y Chiriquí. Más de 150 réplicas.",
+   "resumen": "Una persona que resultó herida murió después, según el Gobierno; SINAPROC reporta 27 lesionados, 26.018 personas directamente afectadas, 7.933 viviendas evaluadas y 55 albergues con 3.827 personas. Más de 600 réplicas al 18 de octubre.",
    "tsunami": "Protocolos activados en el Pacífico",
    "por_que_aqui": "Sistema de Fallas Azuero–Soná, en la interacción de la placa de Nazca con la Microplaca de Panamá (Instituto de Geociencias, UP).",
    "entorno": "Fallas en la corteza",
    "fuente_cifras": {
-    "nombre": "Primicias (balance de Sinaproc)",
-    "url": "https://www.primicias.ec/internacional/terremoto-panama-temblor-danos-victimas-134608/"
+    "nombre": "OPS/OMS, Informe de situación n.º 3 (SINAPROC y Gobierno de Panamá)",
+    "url": "https://www.paho.org/es/documentos/informe-situacion-3-terremoto-panama-octubre-2026"
    },
    "fuente_extra": {
     "nombre": "El Tiempo: la falla detrás del sismo",
     "url": "https://www.eltiempo.com/mundo/latinoamerica/fuerte-terremoto-en-panama-reportan-sismo-de-magnitud-8-0-durante-la-tarde-de-este-viernes-9-de-octubre-hay-alerta-de-tsunami-3592581"
    },
    "busqueda_noticias": "terremoto Panamá 9 octubre 2026",
-   "fecha_cifra": "2026-10-10"
+   "fecha_cifra": "2026-10-18"
   },
   "us6000u19w": {
    "id_provisional": null,
@@ -1108,5 +1108,5 @@
    "url": "https://www.infobae.com/america/ciencia-america/2026/08/11/actividad-sismica-en-sudamerica-por-que-ocurrieron-terremotos-con-solo-seis-semanas-de-diferencia-segun-los-geologos/"
   }
  ],
- "_reverificacion_2026_11_07": "Ids de USGS asignados a los 5 sismos menores. Venezuela actualizada a 6509 (24 ago). Panamá: 0 muertos, 27 heridos (no se halló balance posterior al 10 oct; Wikipedia indica 3 muertos sin fuente oficial encontrada). Mindanao 81, Colombia 331 y Flores 111 confirmadas como las cifras oficiales más recientes encontradas."
+ "_reverificacion_2026_11_07": "Ids de USGS asignados a los 5 sismos menores. Venezuela actualizada a 6509 (24 ago). Panamá: 1 muerto y 27 lesionados según el informe de situación n.º 3 de OPS/OMS (18 oct); Wikipedia indica 3 muertos, sin fuente oficial encontrada. Mindanao 81, Colombia 331 y Flores 111 confirmadas como las cifras oficiales más recientes encontradas."
 }
